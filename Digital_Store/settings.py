@@ -34,6 +34,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'tailwind',
     'theme',
+    'django_browser_reload',
+
+    'products',
 
 ]
 
@@ -42,6 +45,7 @@ SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
