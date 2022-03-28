@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django_browser_reload',
 
     'products',
+    'users',
 
 ]
 
@@ -140,3 +141,9 @@ MEDIA_ROOT = 'media_root'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 TAILWIND_APP_NAME = 'theme'
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+
+LOGIN_REDIRECT_URL = '/'
+
+# Set dummy email backend for development
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
