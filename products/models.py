@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 
 # create products model for database
 digital_products_categories = (
@@ -15,7 +17,7 @@ class Products(models.Model):
     product_id = models.AutoField
     product_name = models.CharField(max_length=50)
     category = models.CharField(max_length=1, choices=digital_products_categories)
-    product_slug = models.SlugField()
+    slug = models.SlugField()
     price = models.PositiveIntegerField(2000)
     desc = models.TextField(max_length=1000, blank=True, null=True)
     product_pic = models.ImageField(upload_to='products/pictures', default='products/no-img.jpg', blank=True, null=True)
@@ -27,6 +29,9 @@ class Products(models.Model):
 
     def price_display(self):
         return '${:,.2f}'.format(self.price / 100)
+
+    def get_absolute_url(self):
+        return reverse('products:product_detail', kwargs={'slug': self.slug})
 
     class Meta:
         verbose_name = 'Product'
