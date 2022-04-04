@@ -16,7 +16,7 @@ class Products(models.Model):
     product_name = models.CharField(max_length=50)
     category = models.CharField(max_length=1, choices=digital_products_categories)
     product_slug = models.SlugField()
-    price = models.PositiveIntegerField()
+    price = models.PositiveIntegerField(2000)
     desc = models.TextField(max_length=1000, blank=True, null=True)
     product_pic = models.ImageField(upload_to='products/pictures', default='products/no-img.jpg', blank=True, null=True)
     content_url = models.URLField(blank=True, null=True)
@@ -24,6 +24,13 @@ class Products(models.Model):
 
     # auto generate publish date
     pub_date = models.DateTimeField(auto_now_add=True)
+
+    def price_display(self):
+        return '${:,.2f}'.format(self.price / 100)
+
+    class Meta:
+        verbose_name = 'Product'
+        verbose_name_plural = 'Products'
 
     def __str__(self):
         return self.product_name
