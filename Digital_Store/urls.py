@@ -10,6 +10,7 @@ urlpatterns = [
     path('', LandingPageView.as_view(), name='landing_page'),
     path('accounts/', include('allauth.urls')),
     path('products/', include('products.urls', namespace='products')),
+    path('users/', include('users.urls', namespace='users')),
     path("__reload__/", include("django_browser_reload.urls")),
 ]
 
